@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
+  <Import Project="packages\Microsoft.VSSDK.BuildTools.16.11.71\build\Microsoft.VSSDK.BuildTools.props" Condition="Exists('packages\Microsoft.VSSDK.BuildTools.16.11.71\build\Microsoft.VSSDK.BuildTools.props')" />
   <PropertyGroup>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
@@ -72,32 +73,29 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Presentation" />
-    <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="16.0.208" ExcludeAssets="runtime" />
-    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="16.11.71" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="stdole">
-      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </COMReference>
+    <Reference Include="EnvDTE"/>
+    <Reference Include="Microsoft.VisualStudio.CoreUtility"/>
+    <Reference Include="Microsoft.VisualStudio.ComponentModelHost"/>
+    <Reference Include="Microsoft.VisualStudio.OLE.Interop"/>
+    <Reference Include="Microsoft.VisualStudio.Shell.15.0"/>
+    <Reference Include="Microsoft.VisualStudio.Shell.Framework"/>
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop"/>
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.8.0"/>
+    <Reference Include="Microsoft.VisualStudio.TextManager.Interop"/>
+    <Reference Include="Microsoft.VisualStudio.TextManager.Interop.8.0"/>
+    <Reference Include="Microsoft.VisualStudio.Text.Data"/>
+    <Reference Include="Microsoft.VisualStudio.Text.Logic"/>
+    <Reference Include="Microsoft.VisualStudio.Text.UI"/>
+    <Reference Include="Microsoft.VisualStudio.Text.UI.Wpf"/>
+    <Reference Include="Microsoft.VisualStudio.Threading"/>
+    <Reference Include="Microsoft.VisualStudio.Editor"/>
+    <Reference Include="Microsoft.VisualStudio.Language"/>
+    <Reference Include="Microsoft.VisualStudio.Language.Intellisense"/>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\Marks\MarkEnclosingCommand.cs" />
