@@ -54,13 +54,34 @@ namespace Microsoft.VisualStudio.Editor.EmacsEmulation
 
         public ClipboardRing ClipboardRing { get; private set; }
 
-        public bool IsEnabled { get; set; }
+        /// <summary>
+        /// Whether the extension has sucessfully loaded or not.
+        /// </summary>
+        private bool IsLoaded { get; set; }
+
+        /// <summary>
+        /// Whether the extension is enabled or not.
+        /// This setting can be interactively changed by the user.
+        /// </summary>
+        public bool IsEnabled { get; private set; }
 
         public bool IsDeleteSelectionMode { get; set; }
 
         public void OnImportsSatisfied()
         {
             this.ComponentModel = this.ServiceProvider.GetService<SComponentModel, IComponentModel>();
+        }
+
+        public void Enable()
+        {
+            IsEnabled = true;
+            UpdateStatus("EmacsKeys enabled.");
+        }
+
+        public void Disable()
+        {
+            IsEnabled = false;
+            UpdateStatus("EmacsKeys disabled.");
         }
 
         public EmacsCommandsManager()
@@ -92,6 +113,25 @@ namespace Microsoft.VisualStudio.Editor.EmacsEmulation
 
             if (commandMetadata != null)
                 this.Execute(view, commandMetadata, evaluateUniversalArgument);
+        }
+
+        /// <summary>
+        /// Checks if the given command can be currently executed.
+        /// Commands can be executed when the extension is both loaded and activated,
+        /// or when it is disactivated but the command is an activation command.
+        /// </summary>
+        /// <param name="cmdID">The target command ID.</param>
+        /// <param name="cmdGroup">The target command group GUID.</param>
+        /// <returns></returns>
+        public bool CanExecute(int cmdID, Guid cmdGroup)
+        {
+            bool IsActivationCommand()
+            {
+                return cmdGroup == typeof(EmacsCommandID).GUID &&
+                    (cmdID == (int)EmacsCommandID.EnableEmacsKeys || cmdID == (int)EmacsCommandID.ToggleEmacsKeys);
+            }
+
+            return this.IsLoaded && (this.IsEnabled || IsActivationCommand());
         }
 
         /// <summary>
@@ -294,7 +334,8 @@ namespace Microsoft.VisualStudio.Editor.EmacsEmulation
                                 {
                                     var schemeName = keyboardKey.GetValue("SchemeName") as string;
 
-                                    this.IsEnabled = !string.IsNullOrEmpty(schemeName) && string.Equals("Emacs.vsk", Path.GetFileName(schemeName), StringComparison.InvariantCultureIgnoreCase);
+                                    this.IsLoaded = !string.IsNullOrEmpty(schemeName) && string.Equals("Emacs.vsk", Path.GetFileName(schemeName), StringComparison.InvariantCultureIgnoreCase);
+                                    this.IsEnabled = this.IsLoaded;
                                 }
                             }
                         }
@@ -305,6 +346,7 @@ namespace Microsoft.VisualStudio.Editor.EmacsEmulation
             }
             catch
             {
+                this.IsLoaded = false;
                 this.IsEnabled = false;
             }
         }

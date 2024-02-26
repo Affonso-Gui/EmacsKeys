@@ -261,6 +261,30 @@
               <ButtonText>EmacsMovetoOtherTabGroup</ButtonText>
           </Strings>
       </Button>
+
+      <Button guid="guidEmacsEmulationsCmdSet" id="cmdidEnableEmacsKeys" priority="0x0100" type="Button">
+          <Parent guid="guidEmacsEmulationsCmdSet" id="EmacsEmulationsMenuGroup" />
+          <CommandFlag>CommandWellOnly</CommandFlag>
+          <Strings>
+              <ButtonText>EmacsEnableEmacsKeys</ButtonText>
+          </Strings>
+      </Button>
+
+      <Button guid="guidEmacsEmulationsCmdSet" id="cmdidDisableEmacsKeys" priority="0x0100" type="Button">
+          <Parent guid="guidEmacsEmulationsCmdSet" id="EmacsEmulationsMenuGroup" />
+          <CommandFlag>CommandWellOnly</CommandFlag>
+          <Strings>
+              <ButtonText>EmacsDisableEmacsKeys</ButtonText>
+          </Strings>
+      </Button>
+
+      <Button guid="guidEmacsEmulationsCmdSet" id="cmdidToggleEmacsKeys" priority="0x0100" type="Button">
+          <Parent guid="guidEmacsEmulationsCmdSet" id="EmacsEmulationsMenuGroup" />
+          <CommandFlag>CommandWellOnly</CommandFlag>
+          <Strings>
+              <ButtonText>EmacsToggleEmacsKeys</ButtonText>
+          </Strings>
+      </Button>
     </Buttons>
 
 
@@ -466,6 +490,9 @@
       <IDSymbol name="cmdidVirtualCaretActivate" value="0x61"/>
       <IDSymbol name="cmdidToggleWindowSplitLayout" value="0x62"/>
       <IDSymbol name="cmdidMovetoOtherTabGroup" value="0x63"/>
+      <IDSymbol name="cmdidEnableEmacsKeys" value="0x97"/>
+      <IDSymbol name="cmdidDisableEmacsKeys" value="0x98"/>
+      <IDSymbol name="cmdidToggleEmacsKeys" value="0x99"/>
 
     </GuidSymbol>
 

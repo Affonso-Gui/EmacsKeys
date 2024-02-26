@@ -92,5 +92,9 @@ namespace Microsoft.VisualStudio.Editor.EmacsEmulation.Commands
 
         ToggleWindowSplitLayout = 0x62,
         MovetoOtherTabGroup = 0x63,
+
+        EnableEmacsKeys = 0x97,
+        DisableEmacsKeys = 0x98,
+        ToggleEmacsKeys = 0x99,
     }
 }

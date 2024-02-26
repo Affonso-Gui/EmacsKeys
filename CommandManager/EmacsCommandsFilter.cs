@@ -31,7 +31,7 @@ namespace Microsoft.VisualStudio.Editor.EmacsEmulation
 
         public int Exec(ref Guid pguidCmdGroup, uint nCmdID, uint nCmdexecopt, IntPtr pvaIn, IntPtr pvaOut)
         {
-            if (this.manager.IsEnabled)
+            if (this.manager.CanExecute((int)nCmdID, pguidCmdGroup))
             {
                 var command = this.manager.GetCommandMetadata((int)nCmdID, pguidCmdGroup);
 
@@ -147,11 +147,12 @@ namespace Microsoft.VisualStudio.Editor.EmacsEmulation
 
         public int QueryStatus(ref Guid pguidCmdGroup, uint cCmds, OLECMD[] prgCmds, IntPtr pCmdText)
         {
-            if (this.manager.IsEnabled)
+            if (pguidCmdGroup == typeof(EmacsCommandID).GUID && cCmds > 0)
             {
-                if (pguidCmdGroup == typeof(EmacsCommandID).GUID && cCmds > 0)
+                var cmdID = (int)prgCmds[0].cmdID;
+                if (this.manager.CanExecute(cmdID, pguidCmdGroup))
                 {
-                    var command = this.manager.GetCommandMetadata((int)prgCmds[0].cmdID, pguidCmdGroup);
+                    var command = this.manager.GetCommandMetadata(cmdID, pguidCmdGroup);
                     if (command != null)
                     {
                         prgCmds[0].cmdf = (int)Microsoft.VisualStudio.OLE.Interop.Constants.MSOCMDF_ENABLED | (int)Microsoft.VisualStudio.OLE.Interop.Constants.MSOCMDF_SUPPORTED;
@@ -169,7 +170,7 @@ namespace Microsoft.VisualStudio.Editor.EmacsEmulation
         /// </summary>
         private bool IsKillwordFlushCommand(Guid pguidCmdGroup, uint nCmdID)
         {
-            if (manager.IsEnabled)
+            if (this.manager.CanExecute((int)nCmdID, pguidCmdGroup))
             {
                 if (pguidCmdGroup == typeof(EmacsCommandID).GUID)
                 {

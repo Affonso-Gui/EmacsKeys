@@ -214,7 +214,7 @@ namespace Microsoft.VisualStudio.Editor.EmacsEmulation
 
         int IOleCommandTarget.Exec(ref Guid pguidCmdGroup, uint nCmdID, uint nCmdexecopt, IntPtr pvaIn, IntPtr pvaOut)
         {
-            if (this.IsActive && this.manager.IsEnabled)
+            if (this.IsActive && this.manager.CanExecute((int)nCmdID, pguidCmdGroup))
             {
                 if (pguidCmdGroup == VSConstants.VSStd2K)
                 {

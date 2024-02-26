@@ -33,7 +33,7 @@ namespace Microsoft.VisualStudio.Editor.EmacsEmulation
 
         int IOleCommandTarget.Exec(ref Guid pguidCmdGroup, uint nCmdID, uint nCmdexecopt, IntPtr pvaIn, IntPtr pvaOut)
         {
-            if (this.manager.IsEnabled)
+            if (this.manager.CanExecute((int)nCmdID, pguidCmdGroup))
             {
                 if (this.IsActive)
                 {
