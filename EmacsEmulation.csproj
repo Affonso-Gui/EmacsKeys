@@ -71,6 +71,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.Platform.WindowManagement">
+      <HintPath>..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Microsoft.VisualStudio.Platform.WindowManagement.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
