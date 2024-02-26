@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="EmacsEmulation.161B6344-A06C-4E37-B24F-C31BBEE6B10E" Version="5.3" Language="en-US" Publisher="Justin Clareburt" />
-        <DisplayName>Emacs Emulation VS2017/2019</DisplayName>
+        <Identity Id="LocalEmacsEmulation.161B6344-A06C-4E37-B24F-C31BBEE6B10E" Version="5.3" Language="en-US" Publisher="Justin Clareburt" />
+        <DisplayName>LocalEmacs Emulation VS2017/2019</DisplayName>
         <Description xml:space="preserve">Provides basic support for Emacs keybindings and text editing commands.</Description>
         <License>LICENSE.rtf</License>
         <ReleaseNotes>ReleaseNotes.txt</ReleaseNotes>

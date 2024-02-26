@@ -99,7 +99,7 @@ namespace Microsoft.VisualStudio.Editor.EmacsEmulation.Commands
         // Order of operations to be executed on consecutive calls
         // Defaults to `center, top, bottom`
         internal List<ScrollLinePosition> recenterPositions = new List<ScrollLinePosition> {
-            ScrollLinePosition.Center, ScrollLinePosition.Top, ScrollLinePosition.Bottom
+            ScrollLinePosition.Top, ScrollLinePosition.Center, ScrollLinePosition.Bottom
         };
     }
 }
